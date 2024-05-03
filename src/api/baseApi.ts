@@ -19,7 +19,7 @@ async function postSingle<T>(path: string, payload: T){
   return resp.data;
 }
 
-async function updateSingle(path: string, payload: T) {
+async function updateSingle<T>(path: string, payload: T) {
   const resp = await axiosInstance.patch(path, payload);
   return resp.data;
 }
