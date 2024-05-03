@@ -1,5 +1,5 @@
 import axios from "axios";
-6
+
 const axiosInstance = axios.create({
   baseURL: "https://inqool-interview-api.vercel.app/api",
 });

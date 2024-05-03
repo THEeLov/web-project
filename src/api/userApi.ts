@@ -1,7 +1,5 @@
-import axios from "axios";
 import BaseApi from "./baseApi";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { User, CreateUser, UpdateUser, UpdateAnimal } from "./types";
+import { User, CreateUser, UpdateUser } from "./types";
 
 const USERS_PREFIX = "/users";
 
@@ -21,17 +19,16 @@ async function updateSingle(id: string, payload: UpdateUser): Promise<User> {
   return BaseApi.updateSingle(`${USERS_PREFIX}/${id}`, payload);
 }
 
-async function deleteSingle(id: string) {
-  return BaseApi.deleteSingle<Product>(`${PRODUCTS_PREFIX}/${id}`);
+async function deleteSingle(id: string): Promise<void> {
+  return BaseApi.deleteSingle(`${USERS_PREFIX}/${id}`);
 }
 
 const UserApi = {
-  getAllUsers,
-  getUser,
-  createUser,
-  updateUser,
-  deleteUser,
-  seed
+  getSingle,
+  getAll,
+  createSingle,
+  updateSingle,
+  deleteSingle
 };
 
 export default UserApi;
