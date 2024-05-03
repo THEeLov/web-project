@@ -1,0 +1,40 @@
+.nav-container {
+ display: flex; 
+ justify-content: center;
+ align-items: center;
+ border-radius: 1rem;
+ background-color: #e3e3e3;
+} 
+
+.nav-container a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.692);
+}
+.nav-button {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  width: 250px;
+  height: 50px;
+  align-items: center;
+  list-style: none;
+  font-weight: bold;
+}
+
+.nav-button:hover{
+  background-color: #d8d8d8;
+}
+
+.nav-button--users:hover {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.nav-button--animals:hover {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.active {
+  color: #a2c11c;
+}

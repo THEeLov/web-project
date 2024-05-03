@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
     Component: AppLayout,
     children: [
       {
-        index: true,
+        path: "users",
         Component: UserPage,
       },
       {
