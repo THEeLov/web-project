@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { useUsers, useUserCreate } from "../../hooks/useUsers";
+import { useUsers } from "../../hooks/useUsers";
 import { Spin } from "antd";
 import UserTable from "../../components/UserTable/UserTable";
 import "./userpage.css";

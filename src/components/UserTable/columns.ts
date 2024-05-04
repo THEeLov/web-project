@@ -25,4 +25,8 @@ export const USER_COLUMNS: CustomColumn<User>[] = [
     accessor: "banned",
     Cell: ({ value }) => (value? "Yes" : "No"),
   },
+  {
+    Header: 'Actions',
+    id: 'actions', // Unique identifier for this column
+  }
 ];
