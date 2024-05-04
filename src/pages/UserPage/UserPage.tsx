@@ -15,8 +15,8 @@ const UserPage = () => {
   return (
     <main className="user-page-container">
         <section className="user-page__header">
-            <h1>Users</h1>
-            <button onClick={handleDialogOpen}>Add user</button>
+            <h1>USERS</h1>
+            <button onClick={handleDialogOpen} className="user-page__header__button">Add user</button>
         </section>
         {data && !isLoading ? (
         <UserTable fetchedData={data}/>

@@ -24,17 +24,17 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
     tableInstance;
 
   return (
-    <table {...getTableProps()} className="table-container">
-      <thead>
+    <table {...getTableProps()} className="table">
+      <thead className="table-head">
         {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+          <tr {...headerGroup.getHeaderGroupProps()} className="s">
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+              <th {...column.getHeaderProps()} className="t">{column.render("Header")}</th>
             ))}
           </tr>
         ))}
       </thead>
-      <tbody {...getTableBodyProps()}>
+      <tbody {...getTableBodyProps()} className="table-body">
         {rows.map((row) => {
           prepareRow(row);
           return (
