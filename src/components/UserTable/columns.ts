@@ -1,14 +1,20 @@
 import { Column } from 'react-table';
 import { User } from '../../api/types';
+import ColumnFilter from '../../utilities/Filter/ColumnFilter';
 
-export const USER_COLUMNS: Column<User>[] = [
+type CustomColumn<T extends object> = Column<T> & {
+  Filter?: any;
+};
+
+export const USER_COLUMNS: CustomColumn<User>[] = [
   {
     Header: "ID",
     accessor: "id",
   },
   {
-    Header: "Name",
-    accessor: "name",
+    Header: 'Name',
+    accessor: 'name',
+    Filter: ColumnFilter,
   },
   {
     Header: "Gender",
@@ -17,5 +23,6 @@ export const USER_COLUMNS: Column<User>[] = [
   {
     Header: "Banned",
     accessor: "banned",
+    Cell: ({ value }) => (value? "Yes" : "No"),
   },
 ];

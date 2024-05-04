@@ -1,4 +1,4 @@
-import { useTable } from "react-table";
+import { useTable, useFilters } from "react-table";
 import { USER_COLUMNS } from "./columns";
 import { User } from "../../api/types";
 import "./usertable.css";
@@ -12,24 +12,36 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
   const columns = useMemo(() => USER_COLUMNS, []);
   const data = useMemo(() => fetchedData, []);
 
-  const tableInstance = useTable({
-    columns,
-    data,
-  });
-
-  console.log("This is table data");
-  console.log(data);
+  const tableInstance = useTable(
+    {
+      columns,
+      data,
+    },
+    useFilters
+  );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
 
+  // canFilter not working and i dont know why :(
   return (
     <table {...getTableProps()} className="table">
       <thead className="table-head">
         {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()} className="s">
+          <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()} className="t">{column.render("Header")}</th>
+              <th
+                {...column.getHeaderProps()}
+                className="table-header"
+                key={column.id}
+              >
+                {column.render("Header")}
+                <div>
+                  {"Filter" in column && column.Filter
+                    ? column.render("Filter")
+                    : null}
+                </div>
+              </th>
             ))}
           </tr>
         ))}
@@ -40,16 +52,7 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => {
-                console.log(cell);
-                return (
-                  <td {...cell.getCellProps()}>
-                    {typeof cell.value === "boolean"
-                      ? cell.value
-                        ? "Yes"
-                        : "No"
-                      : cell.render("Cell")}
-                  </td>
-                );
+                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
               })}
             </tr>
           );
