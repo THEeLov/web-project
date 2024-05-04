@@ -28,7 +28,7 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
     <table {...getTableProps()} className="table">
       <thead className="table-head">
         {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+          <tr {...headerGroup.getHeaderGroupProps()} className="table-h">
             {headerGroup.headers.map((column) => (
               <th
                 {...column.getHeaderProps()}
