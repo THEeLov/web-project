@@ -9,9 +9,9 @@ function AppLayout() {
         <div className="app-layout__nav">
           <Navigation />
         </div>
-        <main className="app-layout__page">
+        <div className="app-layout__page">
           <Outlet />
-        </main>
+        </div>
       </div>
     </div>
   );

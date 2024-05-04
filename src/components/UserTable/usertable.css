@@ -1,0 +1,11 @@
+.user {
+  display: flex;
+}
+
+.table-container {
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.041);
+  font-size: 1.3rem;
+  border-radius: 1rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.315);
+}

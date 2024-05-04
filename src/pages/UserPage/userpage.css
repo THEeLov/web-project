@@ -1,0 +1,4 @@
+.user-page__header {
+  display: flex;
+  justify-content: space-between;
+}

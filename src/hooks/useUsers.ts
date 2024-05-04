@@ -5,7 +5,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useUser = (id: string) => {
   const { data } = useQuery({
-    queryKey: ["product"],
+    queryKey: ["user"],
     queryFn: () => UserApi.getSingle(id),
   });
 
@@ -14,7 +14,7 @@ export const useUser = (id: string) => {
 
 export const useUsers = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["users"],
     queryFn: () => UserApi.getAll(),
   });
 
