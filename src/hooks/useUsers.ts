@@ -29,7 +29,6 @@ export const useUserCreate = () => {
       queryClient.invalidateQueries();
     },
   });
-
   return { mutateAsync };
 };
 
