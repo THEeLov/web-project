@@ -10,7 +10,7 @@ export type CreateUser = Omit<User, 'id'>;
 export type UpdateUser = {
   name?: string;
   gender?: string;
-  banned?: string;
+  banned?: boolean;
 }
 
 
