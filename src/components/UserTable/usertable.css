@@ -23,7 +23,9 @@
   border: 1px solid #ddd;
   padding: 1rem;
   text-align: center;
-  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  overflow-wrap: break-word;
 }
 
 .table thead {

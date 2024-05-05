@@ -3,7 +3,7 @@ import { useUsers } from "../../hooks/useUsers";
 import { Spin } from "antd";
 import UserTable from "../../components/UserTable/UserTable";
 import "./userpage.css";
-import CreateUserDialog from "../../components/dialogs/CreateUserDialog/CreateUserDialog";
+import CreateUserDialog from "../../components/dialogs/user/CreateUserDialog/CreateUserDialog";
 
 const UserPage = () => {
   const { data: UserData, isLoading } = useUsers();

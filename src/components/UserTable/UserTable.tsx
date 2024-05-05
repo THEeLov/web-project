@@ -4,9 +4,8 @@ import { User } from "../../api/types";
 import "./usertable.css";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useMemo } from "react";
-import { useUserDelete } from "../../hooks/useUsers";
 import { useState } from "react";
-import DeleteUserDialog from "../dialogs/DeleteUserDialog/DeleteUserDialog";
+import DeleteUserDialog from "../dialogs/user/DeleteUserDialog/DeleteUserDialog";
 
 interface UserTableProps {
   fetchedData: User[];
@@ -14,36 +13,37 @@ interface UserTableProps {
 
 const UserTable = ({ fetchedData }: UserTableProps) => {
   const [userId, setUserId] = useState("");
-  const { mutateAsync } = useUserDelete(userId);
 
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState<boolean>(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState<boolean>(false);
+
   const handleDeleteDialogOpen = (userId: string) => {
     setIsDeleteDialogOpen(true);
     setUserId(userId);
   };
-  const handleAcceptDelete = () => {
-    mutateAsync();
-    setIsDeleteDialogOpen(false);
+  const handleCloseDeleteDialog = () => setIsDeleteDialogOpen(false);
+
+  const handleEditDialogOpen = (userId: string) => {
+    setIsEditDialogOpen(true);
+    setUserId(userId);
   };
-  const handleDeclineDelete = () => setIsDeleteDialogOpen(false);
+  const handleCloseEditDialog = () => setIsEditDialogOpen(false);
 
   const columns = useMemo(() => USER_COLUMNS, []);
   const data = useMemo(() => fetchedData, [fetchedData]);
 
-  const tableInstance = useTable(
-    {
-      columns,
-      data,
-    },
-    useFilters
-  );
-
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    tableInstance;
+    useTable(
+      {
+        columns,
+        data,
+      },
+      useFilters
+    );
 
   // canFilter not working and i dont know why :(
   return (
-    <div>
+    <>
       <table {...getTableProps()} className="table">
         <thead className="table-head">
           {headerGroups.map((headerGroup) => (
@@ -75,7 +75,10 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
                     <td {...cell.getCellProps()}>
                       {cell.column.id === "actions" ? (
                         <div className="table-action-buttons">
-                          <button className="table-action-button--edit">
+                          <button
+                            className="table-action-button--edit"
+                            onClick={() => handleEditDialogOpen(cell.row.original.id)}
+                          >
                             <EditOutlined />
                           </button>
                           <button
@@ -101,12 +104,17 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
       {isDeleteDialogOpen && (
         <div className="user-page__delete-dialog">
           <DeleteUserDialog
-            handleDeclineDelete={handleDeclineDelete}
-            handleAcceptDelete={handleAcceptDelete}
+            handleCloseDelete={handleCloseDeleteDialog}
+            userId={userId}
           />
         </div>
       )}
-    </div>
+      {/* {isEditDialogOpen && (
+        <div className="user-page__edit-dialog">
+          <EditUserDialog handleClose={handleEditDialogClose} handleEdit={handleEditDialogEdit}/>
+        </div>
+      )} */}
+    </>
   );
 };
 
