@@ -22,10 +22,11 @@ export const useUsers = () => {
 };
 
 export const useUserCreate = () => {
+  const queryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: (payload: CreateUser) => UserApi.createSingle(payload),
     onSuccess: () => {
-      location.reload();
+      queryClient.invalidateQueries({queryKey: ["users"]});
     },
   });
   return { mutateAsync };
@@ -48,7 +49,7 @@ export const useUserDelete = (id: string) => {
   const { mutateAsync } = useMutation({
     mutationFn: () => UserApi.deleteSingle(id),
     onSuccess: () => {
-      location.reload();
+      queryClient.invalidateQueries({queryKey: ['users']});
     },
   });
 

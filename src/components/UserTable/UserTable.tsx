@@ -13,7 +13,7 @@ interface UserTableProps {
 
 const UserTable = ({ fetchedData }: UserTableProps) => {
   const columns = useMemo(() => USER_COLUMNS, []);
-  const data = useMemo(() => fetchedData, []);
+  const data = useMemo(() => fetchedData, [fetchedData]);
   const [userId, setUserId] = useState("");
   const { mutateAsync } = useUserDelete(userId);
 
