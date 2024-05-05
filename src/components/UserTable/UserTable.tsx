@@ -6,6 +6,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useMemo } from "react";
 import { useState } from "react";
 import DeleteUserDialog from "../dialogs/user/DeleteUserDialog/DeleteUserDialog";
+import EditUserDialog from "../dialogs/user/EditUserDialog/EditUserDialog";
 
 interface UserTableProps {
   fetchedData: User[];
@@ -21,13 +22,13 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
     setIsDeleteDialogOpen(true);
     setUserId(userId);
   };
-  const handleCloseDeleteDialog = () => setIsDeleteDialogOpen(false);
+  const handleDeleteDialogClose = () => setIsDeleteDialogOpen(false);
 
   const handleEditDialogOpen = (userId: string) => {
     setIsEditDialogOpen(true);
     setUserId(userId);
   };
-  const handleCloseEditDialog = () => setIsEditDialogOpen(false);
+  const handleEditDialogClose = () => setIsEditDialogOpen(false);
 
   const columns = useMemo(() => USER_COLUMNS, []);
   const data = useMemo(() => fetchedData, [fetchedData]);
@@ -77,7 +78,9 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
                         <div className="table-action-buttons">
                           <button
                             className="table-action-button--edit"
-                            onClick={() => handleEditDialogOpen(cell.row.original.id)}
+                            onClick={() =>
+                              handleEditDialogOpen(cell.row.original.id)
+                            }
                           >
                             <EditOutlined />
                           </button>
@@ -102,18 +105,14 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
         </tbody>
       </table>
       {isDeleteDialogOpen && (
-        <div className="user-page__delete-dialog">
-          <DeleteUserDialog
-            handleCloseDelete={handleCloseDeleteDialog}
-            userId={userId}
-          />
-        </div>
+        <DeleteUserDialog
+          handleCloseDelete={handleDeleteDialogClose}
+          userId={userId}
+        />
       )}
-      {/* {isEditDialogOpen && (
-        <div className="user-page__edit-dialog">
-          <EditUserDialog handleClose={handleEditDialogClose} handleEdit={handleEditDialogEdit}/>
-        </div>
-      )} */}
+      {isEditDialogOpen && (
+        <EditUserDialog handleClose={handleEditDialogClose} userId={userId} />
+      )}
     </>
   );
 };

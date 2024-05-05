@@ -19,7 +19,7 @@ const DeleteUserDialog = ({
   };
 
   return (
-    <div className="delete-dialog-container">
+    <div className="dialog-container">
       <b>Are you sure you want to delete the user ? </b>
       <div className="delete-dialog__buttons">
         <button
