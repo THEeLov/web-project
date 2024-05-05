@@ -12,7 +12,7 @@
 
 .dialog__header__button {
   padding: 0 1rem 0 1rem;
-  border:none;
+  border: none;
   font-weight: bold;
   background-color: rgba(255, 0, 0, 0.274);
   cursor: pointer;
@@ -59,7 +59,7 @@
 }
 
 .form-button:hover {
-  background-color: rgba(24, 189, 24, 0.486);;
+  background-color: rgba(24, 189, 24, 0.486);
 }
 
 .error-message {

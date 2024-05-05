@@ -1,0 +1,34 @@
+.delete-dialog-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.delete-dialog__buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: end;
+}
+
+.delete-button {
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.delete-button--no {
+  background-color: white;
+}
+
+.delete-button--no:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.delete-button--yes {
+  background-color: rgba(255, 0, 0, 0.527);
+}
+
+.delete-button--yes:hover {
+  background-color: rgba(255, 0, 0, 0.637);
+}
