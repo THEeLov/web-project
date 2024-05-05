@@ -2,11 +2,12 @@ import { useTable, useFilters } from "react-table";
 import { USER_COLUMNS } from "./columns";
 import { User } from "../../api/types";
 import "./usertable.css";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, StopOutlined } from "@ant-design/icons";
 import { useMemo } from "react";
 import { useState } from "react";
 import DeleteUserDialog from "../dialogs/user/DeleteUserDialog/DeleteUserDialog";
 import EditUserDialog from "../dialogs/user/EditUserDialog/EditUserDialog";
+import { useUserUpdate } from "../../hooks/useUsers";
 
 interface UserTableProps {
   fetchedData: User[];
@@ -17,6 +18,7 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
 
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState<boolean>(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState<boolean>(false);
+  const { mutateAsync: BanUser } = useUserUpdate(userId);
 
   const handleDeleteDialogOpen = (userId: string) => {
     setIsDeleteDialogOpen(true);
@@ -29,6 +31,15 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
     setUserId(userId);
   };
   const handleEditDialogClose = () => setIsEditDialogOpen(false);
+
+  const handleBanUser = (userId: string, isBanned: boolean) => {
+    setUserId(userId);
+    if (isBanned) {
+      BanUser({ banned: false });
+    } else {
+      BanUser({ banned: true });
+    }
+  };
 
   const columns = useMemo(() => USER_COLUMNS, []);
   const data = useMemo(() => fetchedData, [fetchedData]);
@@ -69,8 +80,10 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
         <tbody {...getTableBodyProps()} className="table-body">
           {rows.map((row) => {
             prepareRow(row);
+            const bannedCell =
+              row.cells.find((c) => c.column.id === "banned")?.value == true;
             return (
-              <tr {...row.getRowProps()}>
+              <tr {...row.getRowProps()} className={bannedCell ? "banned" : ""}>
                 {row.cells.map((cell) => {
                   return (
                     <td {...cell.getCellProps()}>
@@ -81,6 +94,7 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
                             onClick={() =>
                               handleEditDialogOpen(cell.row.original.id)
                             }
+                            title="Edit User"
                           >
                             <EditOutlined />
                           </button>
@@ -89,8 +103,21 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
                             onClick={() =>
                               handleDeleteDialogOpen(cell.row.original.id)
                             }
+                            title="Delete User"
                           >
                             <DeleteOutlined />
+                          </button>
+                          <button
+                            className="table-action-button--ban"
+                            onClick={() =>
+                              handleBanUser(
+                                cell.row.original.id,
+                                cell.row.original.banned
+                              )
+                            }
+                            title="Ban User"
+                          >
+                            <StopOutlined />
                           </button>
                         </div>
                       ) : (
