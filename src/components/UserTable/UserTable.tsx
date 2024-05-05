@@ -80,8 +80,7 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
         <tbody {...getTableBodyProps()} className="table-body">
           {rows.map((row) => {
             prepareRow(row);
-            const bannedCell =
-              row.cells.find((c) => c.column.id === "banned")?.value == true;
+            const bannedCell = row.original.banned;
             return (
               <tr {...row.getRowProps()} className={bannedCell ? "banned" : ""}>
                 {row.cells.map((cell) => {

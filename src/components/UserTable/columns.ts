@@ -7,10 +7,11 @@ type CustomColumn<T extends object> = Column<T> & {
 };
 
 export const USER_COLUMNS: CustomColumn<User>[] = [
-  {
-    Header: "ID",
-    accessor: "id",
-  },
+  // Is this supposed to be shown ?? If yes, just uncomment.
+  // {
+  //   Header: "ID",
+  //   accessor: "id",
+  // },
   {
     Header: 'Name',
     accessor: 'name',
@@ -20,11 +21,12 @@ export const USER_COLUMNS: CustomColumn<User>[] = [
     Header: "Gender",
     accessor: "gender",
   },
-  {
-    Header: "Banned",
-    accessor: "banned",
-    Cell: ({ value }) => (value? "Yes" : "No"),
-  },
+  // This too ...
+  // {
+  //   Header: "Banned",
+  //   accessor: "banned",
+  //   Cell: ({ value }) => (value? "Yes" : "No"),
+  // },
   {
     Header: 'Actions',
     id: 'actions', // Unique identifier for this column
