@@ -1,7 +1,7 @@
 import BaseApi from "./baseApi";
 import { Animal, CreateAnimal, UpdateAnimal } from "./types";
 
-const ANIMALS_PREFIX = "/users";
+const ANIMALS_PREFIX = "/animals";
 
 async function getSingle(id: string): Promise<Animal> {
   return BaseApi.getSingle(`${ANIMALS_PREFIX}/${id}`);

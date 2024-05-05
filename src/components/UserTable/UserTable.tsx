@@ -114,7 +114,7 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
                                 cell.row.original.banned
                               )
                             }
-                            title="Ban User"
+                            title="Ban / Unban User"
                           >
                             <StopOutlined />
                           </button>
