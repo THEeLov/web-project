@@ -1,10 +1,11 @@
-import './columnfilter.css'
+import "./columnfilter.css";
+import { ClearOutlined } from "@ant-design/icons";
 
 const ColumnFilter = ({ column }: any) => {
   const { filterValue, setFilter } = column;
 
   const handleClearFilter = () => {
-    setFilter('');
+    setFilter("");
   };
 
   return (
@@ -15,7 +16,9 @@ const ColumnFilter = ({ column }: any) => {
         onChange={(e) => setFilter(e.target.value)}
         className="filter__input"
       />
-      <button className="filter__button" onClick={handleClearFilter}>Clear</button>
+      <button className="filter__button" onClick={handleClearFilter}>
+        <ClearOutlined />
+      </button>
     </span>
   );
 };

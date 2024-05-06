@@ -1,9 +1,9 @@
 import { useState, useCallback } from "react";
-import { useUsers } from "../../hooks/useUsers";
+import { useUsers } from "../hooks/useUsers";
 import { Spin } from "antd";
-import UserTable from "../../components/UserTable/UserTable";
-import "../page.css";
-import CreateUserDialog from "../../components/dialogs/user/CreateUserDialog";
+import UserTable from "../components/Table/User/UserTable";
+import "./page.css";
+import CreateUserDialog from "../components/dialogs/user/CreateUserDialog";
 
 const UserPage = () => {
   const { data: UserData, isLoading } = useUsers();

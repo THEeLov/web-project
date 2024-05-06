@@ -4,14 +4,10 @@ import "./applayout.css";
 
 function AppLayout() {
   return (
-    <div className="app-layout">
-      <div className="app-layout-container">
-        <div className="app-layout__nav">
-          <Navigation />
-        </div>
-        <div className="app-layout__page">
-          <Outlet />
-        </div>
+    <div className="app-layout-container">
+      <div className="app-layout">
+        <Navigation />
+        <Outlet />
       </div>
     </div>
   );

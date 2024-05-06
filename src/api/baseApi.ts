@@ -14,7 +14,7 @@ async function getSingle(path: string) {
   return resp.data;
 }
 
-async function postSingle<T>(path: string, payload: T){
+async function postSingle<T>(path: string, payload: T) {
   const resp = await axiosInstance.post(path, payload);
   return resp.data;
 }

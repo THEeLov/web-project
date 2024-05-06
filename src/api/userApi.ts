@@ -28,7 +28,7 @@ const UserApi = {
   getAll,
   createSingle,
   updateSingle,
-  deleteSingle
+  deleteSingle,
 };
 
 export default UserApi;

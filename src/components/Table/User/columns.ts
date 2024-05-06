@@ -1,12 +1,12 @@
 import { Column } from 'react-table';
-import { Animal } from '../../api/types';
-import ColumnFilter from '../../utilities/Filter/ColumnFilter';
+import { User } from '../../../api/types';
+import ColumnFilter from '../../../utilities/Filter/ColumnFilter';
 
 type CustomColumn<T extends object> = Column<T> & {
   Filter?: any;
 };
 
-export const ANIMAL_COLUMN: CustomColumn<Animal>[] = [
+export const USER_COLUMNS: CustomColumn<User>[] = [
   // Is this supposed to be shown ?? If yes, just uncomment.
   // {
   //   Header: "ID",
@@ -18,13 +18,15 @@ export const ANIMAL_COLUMN: CustomColumn<Animal>[] = [
     Filter: ColumnFilter,
   },
   {
-    Header: "Type",
-    accessor: "type",
+    Header: "Gender",
+    accessor: "gender",
   },
-  {
-    Header: "Age",
-    accessor: "age",
-  },
+  // This too ...
+  // {
+  //   Header: "Banned",
+  //   accessor: "banned",
+  //   Cell: ({ value }) => (value? "Yes" : "No"),
+  // },
   {
     Header: 'Actions',
     id: 'actions', // Unique identifier for this column

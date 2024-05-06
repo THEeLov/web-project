@@ -1,47 +1,36 @@
 import { useTable, useFilters } from "react-table";
-import { USER_COLUMNS } from "./columns";
-import { User } from "../../api/types";
-import "./usertable.css";
-import { DeleteOutlined, EditOutlined, StopOutlined } from "@ant-design/icons";
+import { Animal } from "../../../api/types";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useMemo } from "react";
 import { useState } from "react";
-import DeleteUserDialog from "../dialogs/user/DeleteUserDialog";
-import EditUserDialog from "../dialogs/user/EditUserDialog";
-import { useUserUpdate } from "../../hooks/useUsers";
+import EditAnimalDialog from "../../dialogs/animal/EditAnimalDialog";
+import DeleteAnimalDialog from "../../dialogs/animal/DeleteAnimalDialog";
+import { ANIMAL_COLUMN } from "./columns";
+import "../table.css";
 
-interface UserTableProps {
-  fetchedData: User[];
+interface AnimalTableProps {
+  fetchedData: Animal[];
 }
 
-const UserTable = ({ fetchedData }: UserTableProps) => {
-  const [userId, setUserId] = useState("");
+const AnimalTable = ({ fetchedData }: AnimalTableProps) => {
+  const [animalId, setAnimalId] = useState("");
 
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState<boolean>(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState<boolean>(false);
-  const { mutateAsync: BanUser } = useUserUpdate(userId);
 
-  const handleDeleteDialogOpen = (userId: string) => {
+  const handleDeleteDialogOpen = (animalId: string) => {
     setIsDeleteDialogOpen(true);
-    setUserId(userId);
+    setAnimalId(animalId);
   };
   const handleDeleteDialogClose = () => setIsDeleteDialogOpen(false);
 
-  const handleEditDialogOpen = (userId: string) => {
+  const handleEditDialogOpen = (animalId: string) => {
     setIsEditDialogOpen(true);
-    setUserId(userId);
+    setAnimalId(animalId);
   };
   const handleEditDialogClose = () => setIsEditDialogOpen(false);
 
-  const handleBanUser = (userId: string, isBanned: boolean) => {
-    setUserId(userId);
-    if (isBanned) {
-      BanUser({ banned: false });
-    } else {
-      BanUser({ banned: true });
-    }
-  };
-
-  const columns = useMemo(() => USER_COLUMNS, []);
+  const columns = useMemo(() => ANIMAL_COLUMN, []);
   const data = useMemo(() => fetchedData, [fetchedData]);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -80,9 +69,8 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
         <tbody {...getTableBodyProps()} className="table-body">
           {rows.map((row) => {
             prepareRow(row);
-            const bannedCell = row.original.banned;
             return (
-              <tr {...row.getRowProps()} className={bannedCell ? "banned" : ""}>
+              <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
                     <td {...cell.getCellProps()}>
@@ -106,18 +94,6 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
                           >
                             <DeleteOutlined />
                           </button>
-                          <button
-                            className="table-action-button--ban"
-                            onClick={() =>
-                              handleBanUser(
-                                cell.row.original.id,
-                                cell.row.original.banned
-                              )
-                            }
-                            title="Ban / Unban User"
-                          >
-                            <StopOutlined />
-                          </button>
                         </div>
                       ) : (
                         cell.render("Cell")
@@ -131,16 +107,19 @@ const UserTable = ({ fetchedData }: UserTableProps) => {
         </tbody>
       </table>
       {isDeleteDialogOpen && (
-        <DeleteUserDialog
+        <DeleteAnimalDialog
           handleCloseDelete={handleDeleteDialogClose}
-          userId={userId}
+          animalId={animalId}
         />
       )}
       {isEditDialogOpen && (
-        <EditUserDialog handleClose={handleEditDialogClose} userId={userId} />
+        <EditAnimalDialog
+          handleClose={handleEditDialogClose}
+          userId={animalId}
+        />
       )}
     </>
   );
 };
 
-export default UserTable;
+export default AnimalTable;

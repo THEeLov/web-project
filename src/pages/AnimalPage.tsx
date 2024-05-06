@@ -1,9 +1,9 @@
 import { useState, useCallback } from "react";
 import { Spin } from "antd";
-import "../page.css";
-import { useAnimals } from "../../hooks/useAnimals";
-import AnimalTable from "../../components/AnimalTable/AnimalTable";
-import CreateAnimalDialog from "../../components/dialogs/animal/CreateAnimalDialog";
+import "./page.css";
+import { useAnimals } from "../hooks/useAnimals";
+import AnimalTable from "../components/Table/Animal/AnimalTable";
+import CreateAnimalDialog from "../components/dialogs/animal/CreateAnimalDialog";
 
 const AnimalPage = () => {
   const { data: AnimalData, isLoading } = useAnimals();

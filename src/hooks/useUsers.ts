@@ -37,7 +37,7 @@ export const useUserUpdate = (id: string) => {
   const { mutateAsync } = useMutation({
     mutationFn: (payload: UpdateUser) => UserApi.updateSingle(id, payload),
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({queryKey: ["users"]});
     },
   });
 

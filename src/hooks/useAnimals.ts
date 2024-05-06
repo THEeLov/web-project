@@ -1,7 +1,7 @@
 import { CreateAnimal, UpdateAnimal } from "../api/types";
 import "../api/baseApi";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import AnimalApi from "../api/animalsAPI";
+import AnimalApi from "../api/animalsApi";
 
 export const useAnimal = (id: string) => {
   const { data } = useQuery({
@@ -26,7 +26,7 @@ export const useAnimalCreate = () => {
   const { mutateAsync } = useMutation({
     mutationFn: (payload: CreateAnimal) => AnimalApi.createSingle(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({queryKey: ["animals"]});
     },
   });
 
@@ -38,7 +38,7 @@ export const useAnimalUpdate = (id: string) => {
   const { mutateAsync } = useMutation({
     mutationFn: (payload: UpdateAnimal) => AnimalApi.updateSingle(id, payload),
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({queryKey: ["animals"]});
     },
   });
 
@@ -50,7 +50,7 @@ export const useAnimalDelete = (id: string) => {
   const { mutateAsync } = useMutation({
     mutationFn: () => AnimalApi.deleteSingle(id),
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({queryKey: ["animals"]});
     },
   });
 

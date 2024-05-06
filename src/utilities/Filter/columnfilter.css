@@ -8,6 +8,7 @@
   padding: 0.5rem;
   border: none;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .filter__input {
@@ -15,6 +16,6 @@
   border: none;
 }
 
-.filter__input:focus{
-  outline: none
+.filter__input:focus {
+  outline: none;
 }

@@ -15,7 +15,10 @@ async function createSingle(payload: CreateAnimal): Promise<CreateAnimal> {
   return BaseApi.postSingle(ANIMALS_PREFIX, payload);
 }
 
-async function updateSingle(id: string, payload: UpdateAnimal): Promise<Animal> {
+async function updateSingle(
+  id: string,
+  payload: UpdateAnimal
+): Promise<Animal> {
   return BaseApi.updateSingle(`${ANIMALS_PREFIX}/${id}`, payload);
 }
 
@@ -28,7 +31,7 @@ const AnimalApi = {
   getAll,
   createSingle,
   updateSingle,
-  deleteSingle
+  deleteSingle,
 };
 
 export default AnimalApi;
