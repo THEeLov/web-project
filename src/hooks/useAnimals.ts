@@ -26,7 +26,7 @@ export const useAnimalCreate = () => {
   const { mutateAsync } = useMutation({
     mutationFn: (payload: CreateAnimal) => AnimalApi.createSingle(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ["animals"]});
+      queryClient.invalidateQueries({ queryKey: ["animals"] });
     },
   });
 
@@ -38,7 +38,7 @@ export const useAnimalUpdate = (id: string) => {
   const { mutateAsync } = useMutation({
     mutationFn: (payload: UpdateAnimal) => AnimalApi.updateSingle(id, payload),
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ["animals"]});
+      queryClient.invalidateQueries({ queryKey: ["animals"] });
     },
   });
 
@@ -50,7 +50,7 @@ export const useAnimalDelete = (id: string) => {
   const { mutateAsync } = useMutation({
     mutationFn: () => AnimalApi.deleteSingle(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ["animals"]});
+      queryClient.invalidateQueries({ queryKey: ["animals"] });
     },
   });
 

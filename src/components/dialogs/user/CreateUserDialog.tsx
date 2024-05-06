@@ -3,7 +3,7 @@ import { useUserCreate } from "../../../hooks/useUsers";
 import { CreateUser } from "../../../api/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import '../createdialog.css'
+import "../createdialog.css";
 
 const schema = z.object({
   name: z.string().min(1),

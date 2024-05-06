@@ -70,10 +70,7 @@ const CreateAnimalDialog = ({ handleClose }: { handleClose: () => void }) => {
           min="0"
         />
         {errors.age && (
-          <span className="error-message">
-            {" "}
-            Please select number. {" "}
-          </span>
+          <span className="error-message"> Please select number. </span>
         )}
 
         <button type="submit" className="form-button" disabled={isSubmitting}>

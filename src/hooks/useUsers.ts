@@ -26,7 +26,7 @@ export const useUserCreate = () => {
   const { mutateAsync } = useMutation({
     mutationFn: (payload: CreateUser) => UserApi.createSingle(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ["users"]});
+      queryClient.invalidateQueries({ queryKey: ["users"] });
     },
   });
   return { mutateAsync };
@@ -37,7 +37,7 @@ export const useUserUpdate = (id: string) => {
   const { mutateAsync } = useMutation({
     mutationFn: (payload: UpdateUser) => UserApi.updateSingle(id, payload),
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ["users"]});
+      queryClient.invalidateQueries({ queryKey: ["users"] });
     },
   });
 
@@ -49,7 +49,7 @@ export const useUserDelete = (id: string) => {
   const { mutateAsync } = useMutation({
     mutationFn: () => UserApi.deleteSingle(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['users']});
+      queryClient.invalidateQueries({ queryKey: ["users"] });
     },
   });
 

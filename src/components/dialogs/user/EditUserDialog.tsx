@@ -2,7 +2,7 @@ import { useUserUpdate } from "../../../hooks/useUsers";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import '../createdialog.css'
+import "../createdialog.css";
 
 const schema = z.object({
   name: z.string().min(1),

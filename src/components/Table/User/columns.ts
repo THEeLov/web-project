@@ -1,6 +1,6 @@
-import { Column } from 'react-table';
-import { User } from '../../../api/types';
-import ColumnFilter from '../../../utilities/Filter/ColumnFilter';
+import { Column } from "react-table";
+import { User } from "../../../api/types";
+import ColumnFilter from "../../../utilities/Filter/ColumnFilter";
 
 type CustomColumn<T extends object> = Column<T> & {
   Filter?: any;
@@ -13,8 +13,8 @@ export const USER_COLUMNS: CustomColumn<User>[] = [
   //   accessor: "id",
   // },
   {
-    Header: 'Name',
-    accessor: 'name',
+    Header: "Name",
+    accessor: "name",
     Filter: ColumnFilter,
   },
   {
@@ -28,7 +28,7 @@ export const USER_COLUMNS: CustomColumn<User>[] = [
   //   Cell: ({ value }) => (value? "Yes" : "No"),
   // },
   {
-    Header: 'Actions',
-    id: 'actions', // Unique identifier for this column
-  }
+    Header: "Actions",
+    id: "actions", // Unique identifier for this column
+  },
 ];

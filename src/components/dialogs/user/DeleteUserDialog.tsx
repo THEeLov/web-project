@@ -1,15 +1,14 @@
 import { useUserDelete } from "../../../hooks/useUsers";
 import { useState } from "react";
-import '../deletedialog.css'
+import "../deletedialog.css";
 
 const DeleteUserDialog = ({
   handleCloseDelete,
-  userId
+  userId,
 }: {
   handleCloseDelete: () => void;
   userId: string;
 }) => {
-
   const [user, _] = useState(userId);
   const { mutateAsync } = useUserDelete(user);
 

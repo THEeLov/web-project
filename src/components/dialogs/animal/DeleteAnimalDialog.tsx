@@ -1,15 +1,14 @@
 import { useAnimalDelete } from "../../../hooks/useAnimals";
 import { useState } from "react";
-import '../deletedialog.css'
+import "../deletedialog.css";
 
 const DeleteAnimalDialog = ({
   handleCloseDelete,
-  animalId
+  animalId,
 }: {
   handleCloseDelete: () => void;
   animalId: string;
 }) => {
-
   const [user, _] = useState(animalId);
   const { mutateAsync: animalDelete } = useAnimalDelete(user);
 
