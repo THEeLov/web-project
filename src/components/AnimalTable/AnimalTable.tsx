@@ -3,8 +3,8 @@ import { Animal } from "../../api/types";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useMemo } from "react";
 import { useState } from "react";
-import DeleteUserDialog from "../dialogs/user/DeleteUserDialog/DeleteUserDialog";
-import EditUserDialog from "../dialogs/user/EditUserDialog/EditUserDialog";
+import EditAnimalDialog from "../dialogs/animal/EditAnimalDialog";
+import DeleteAnimalDialog from "../dialogs/animal/DeleteAnimalDialog";
 import { ANIMAL_COLUMN } from "./columns";
 import '../UserTable/usertable.css'
 
@@ -107,13 +107,13 @@ const AnimalTable = ({ fetchedData }: AnimalTableProps) => {
         </tbody>
       </table>
       {isDeleteDialogOpen && (
-        <DeleteUserDialog
+        <DeleteAnimalDialog
           handleCloseDelete={handleDeleteDialogClose}
-          userId={animalId}
+          animalId={animalId}
         />
       )}
       {isEditDialogOpen && (
-        <EditUserDialog handleClose={handleEditDialogClose} userId={animalId} />
+        <EditAnimalDialog handleClose={handleEditDialogClose} userId={animalId} />
       )}
     </>
   );

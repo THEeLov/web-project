@@ -1,13 +1,13 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useUserCreate } from "../../../../hooks/useUsers";
-import { CreateUser } from "../../../../api/types";
+import { useUserCreate } from "../../../hooks/useUsers";
+import { CreateUser } from "../../../api/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import "./createuserdialog.css";
+import '../createdialog.css'
 
 const schema = z.object({
   name: z.string().min(1),
-  gender: z.enum(["male", "female"]),
+  gender: z.enum(["male", "female", "other"]),
   banned: z.string().min(1),
 });
 
@@ -63,7 +63,7 @@ const CreateUserDialog = ({ handleClose }: { handleClose: () => void }) => {
         {errors.gender && (
           <span className="error-message">
             {" "}
-            Please fill out gender correctly (male / female){" "}
+            Please fill out gender correctly (male / female / other){" "}
           </span>
         )}
 

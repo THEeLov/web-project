@@ -5,8 +5,8 @@ import "./usertable.css";
 import { DeleteOutlined, EditOutlined, StopOutlined } from "@ant-design/icons";
 import { useMemo } from "react";
 import { useState } from "react";
-import DeleteUserDialog from "../dialogs/user/DeleteUserDialog/DeleteUserDialog";
-import EditUserDialog from "../dialogs/user/EditUserDialog/EditUserDialog";
+import DeleteUserDialog from "../dialogs/user/DeleteUserDialog";
+import EditUserDialog from "../dialogs/user/EditUserDialog";
 import { useUserUpdate } from "../../hooks/useUsers";
 
 interface UserTableProps {

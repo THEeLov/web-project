@@ -1,13 +1,12 @@
 import { useState, useCallback } from "react";
 import { Spin } from "antd";
-import "../UserPage/userpage.css";
-import CreateUserDialog from "../../components/dialogs/user/CreateUserDialog/CreateUserDialog";
+import "../page.css";
 import { useAnimals } from "../../hooks/useAnimals";
 import AnimalTable from "../../components/AnimalTable/AnimalTable";
+import CreateAnimalDialog from "../../components/dialogs/animal/CreateAnimalDialog";
 
 const AnimalPage = () => {
   const { data: AnimalData, isLoading } = useAnimals();
-  console.log(AnimalData);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState<boolean>(false);
 
   const handleCreateDialogOpen = () => setIsCreateDialogOpen(true);
@@ -21,20 +20,20 @@ const AnimalPage = () => {
   }
 
   return (
-    <main className="user-page-container">
-      <section className="user-page__header">
+    <main className="page-container">
+      <section className="page__header">
         <h1>ANIMALS</h1>
         <button
           onClick={handleCreateDialogOpen}
-          className="user-page__header__button"
+          className="page__header__button"
         >
-          Add user
+          Add Animal
         </button>
       </section>
       {AnimalData && !isLoading && <AnimalTable fetchedData={AnimalData} />}
       {isCreateDialogOpen && (
         <div className="user-page__create-dialog">
-          <CreateUserDialog handleClose={handleCreateDialogClose} />
+          <CreateAnimalDialog handleClose={handleCreateDialogClose} />
         </div>
       )}
     </main>

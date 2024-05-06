@@ -1,26 +1,26 @@
-import { useUserDelete } from "../../../../hooks/useUsers";
-import "./deleteuserdialog.css";
+import { useAnimalDelete } from "../../../hooks/useAnimals";
 import { useState } from "react";
+import '../deletedialog.css'
 
-const DeleteUserDialog = ({
+const DeleteAnimalDialog = ({
   handleCloseDelete,
-  userId
+  animalId
 }: {
   handleCloseDelete: () => void;
-  userId: string;
+  animalId: string;
 }) => {
 
-  const [user, _] = useState(userId);
-  const { mutateAsync } = useUserDelete(user);
+  const [user, _] = useState(animalId);
+  const { mutateAsync: animalDelete } = useAnimalDelete(user);
 
   const handleAccept = () => {
-    mutateAsync();
+    animalDelete();
     handleCloseDelete();
   };
 
   return (
     <div className="dialog-container">
-      <b>Are you sure you want to delete the user ? </b>
+      <b>Are you sure you want to delete the animal ? </b>
       <div className="delete-dialog__buttons">
         <button
           onClick={handleCloseDelete}
@@ -41,4 +41,4 @@ const DeleteUserDialog = ({
   );
 };
 
-export default DeleteUserDialog;
+export default DeleteAnimalDialog;

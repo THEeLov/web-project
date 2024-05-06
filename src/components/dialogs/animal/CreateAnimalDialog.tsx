@@ -1,23 +1,18 @@
-import { useUserUpdate } from "../../../../hooks/useUsers";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useAnimalCreate } from "../../../hooks/useAnimals";
 
 const schema = z.object({
   name: z.string().min(1),
-  gender: z.enum(["male", "female"]),
+  type: z.enum(["cat", "dog", "other"]),
+  age: z.coerce.number().positive(),
 });
 
 type FormFields = z.infer<typeof schema>;
 
-const EditUserDialog = ({
-  handleClose,
-  userId,
-}: {
-  handleClose: () => void;
-  userId: string;
-}) => {
-  const { mutateAsync: updateUser } = useUserUpdate(userId);
+const CreateAnimalDialog = ({ handleClose }: { handleClose: () => void }) => {
+  const { mutateAsync: createAnimal } = useAnimalCreate();
   const {
     register,
     handleSubmit,
@@ -27,14 +22,14 @@ const EditUserDialog = ({
   });
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
-    updateUser(data);
+    createAnimal(data);
     handleClose();
   };
 
   return (
     <div className="dialog-container">
       <div className="dialog__header">
-        <h1>Update User</h1>
+        <h1>Create Animal</h1>
         <button onClick={handleClose} className="dialog__header__button">
           {" "}
           X{" "}
@@ -52,26 +47,42 @@ const EditUserDialog = ({
           <span className="error-message"> Please fill out the name </span>
         )}
 
-        <label htmlFor="gender">Gender</label>
+        <label htmlFor="type">Type</label>
         <input
-          {...register("gender")}
+          {...register("type")}
           type="text"
           id="gender"
           className="form__input"
         />
-        {errors.gender && (
+        {errors.type && (
           <span className="error-message">
             {" "}
-            Please fill out gender correctly (male / female){" "}
+            Please fill out type correctly (dog / cat / other){" "}
           </span>
         )}
+
+        <label htmlFor="age">Age</label>
+        <input
+          {...register("age")}
+          type="number"
+          id="age"
+          className="form__input"
+          min="0"
+        />
+        {errors.age && (
+          <span className="error-message">
+            {" "}
+            Please select number. {" "}
+          </span>
+        )}
+
         <button type="submit" className="form-button" disabled={isSubmitting}>
           {" "}
-          Update User{" "}
+          Create Animal{" "}
         </button>
       </form>
     </div>
   );
 };
 
-export default EditUserDialog;
+export default CreateAnimalDialog;

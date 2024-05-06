@@ -2,8 +2,8 @@ import { useState, useCallback } from "react";
 import { useUsers } from "../../hooks/useUsers";
 import { Spin } from "antd";
 import UserTable from "../../components/UserTable/UserTable";
-import "./userpage.css";
-import CreateUserDialog from "../../components/dialogs/user/CreateUserDialog/CreateUserDialog";
+import "../page.css";
+import CreateUserDialog from "../../components/dialogs/user/CreateUserDialog";
 
 const UserPage = () => {
   const { data: UserData, isLoading } = useUsers();
@@ -20,12 +20,12 @@ const UserPage = () => {
   }
 
   return (
-    <main className="user-page-container">
-      <section className="user-page__header">
+    <main className="page-container">
+      <section className="page__header">
         <h1>USERS</h1>
         <button
           onClick={handleCreateDialogOpen}
-          className="user-page__header__button"
+          className="page__header__button"
         >
           Add user
         </button>
