@@ -19,7 +19,7 @@ const DeleteAnimalDialog = ({
 
   return (
     <div className="dialog-container">
-      <b>Are you sure you want to delete the animal ? </b>
+      <b>Do you really want to delete the animal ? </b>
       <div className="delete-dialog__buttons">
         <button
           onClick={handleCloseDelete}
