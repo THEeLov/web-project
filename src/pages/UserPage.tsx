@@ -1,9 +1,12 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, Suspense, lazy } from "react";
 import { useUsers } from "../hooks/useUsers";
 import { Spin } from "antd";
 import UserTable from "../components/Table/User/UserTable";
 import "./page.css";
-import CreateUserDialog from "../components/dialogs/user/CreateUserDialog";
+
+const CreateUserDialog = lazy(
+  () => import("../components/dialogs/user/CreateUserDialog")
+);
 
 const UserPage = () => {
   const { data: UserData, isLoading } = useUsers();
@@ -33,7 +36,9 @@ const UserPage = () => {
       {UserData && !isLoading && <UserTable fetchedData={UserData} />}
       {isCreateDialogOpen && (
         <div className="user-page__create-dialog">
-          <CreateUserDialog handleClose={handleCreateDialogClose} />
+          <Suspense fallback={<Spin />}>
+            <CreateUserDialog handleClose={handleCreateDialogClose} />
+          </Suspense>
         </div>
       )}
     </main>

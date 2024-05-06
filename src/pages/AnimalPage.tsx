@@ -1,9 +1,13 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, lazy, Suspense } from "react";
 import { Spin } from "antd";
 import "./page.css";
 import { useAnimals } from "../hooks/useAnimals";
 import AnimalTable from "../components/Table/Animal/AnimalTable";
-import CreateAnimalDialog from "../components/dialogs/animal/CreateAnimalDialog";
+
+// Testing new things
+const CreateAnimalDialog = lazy(
+  () => import("../components/dialogs/animal/CreateAnimalDialog")
+);
 
 const AnimalPage = () => {
   const { data: AnimalData, isLoading } = useAnimals();
@@ -33,7 +37,9 @@ const AnimalPage = () => {
       {AnimalData && !isLoading && <AnimalTable fetchedData={AnimalData} />}
       {isCreateDialogOpen && (
         <div className="user-page__create-dialog">
-          <CreateAnimalDialog handleClose={handleCreateDialogClose} />
+          <Suspense fallback={<Spin />}>
+            <CreateAnimalDialog handleClose={handleCreateDialogClose} />
+          </Suspense>
         </div>
       )}
     </main>
